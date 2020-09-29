@@ -3,7 +3,7 @@ Debug/
 x64/
 *.vcxproj
 *.vcxproj.*
-.vccode/
+.vscode/*
 *.sln
 *.exe
 *.o
