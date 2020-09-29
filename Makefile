@@ -25,4 +25,4 @@ clean:
 	$(RM) $(OBJECTS)
 
 destroy:
-	$(RM) $(OBJECTS) corpus
+	$(RM) $(OBJECTS) corpus ${wildcard ${IDIR}/*.gch}
