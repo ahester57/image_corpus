@@ -12,5 +12,6 @@
 #include <iostream>
 
 void display_images(std::vector<std::string> file_paths, uint rows, uint cols);
+std::vector<cv::Mat> get_images_from_path_vector(std::vector<std::string> file_paths);
 
 #endif

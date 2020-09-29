@@ -34,7 +34,8 @@ main(int argc, const char** argv)
     std::vector<std::string> file_paths = open_dir(input_dir_path.c_str());
 
     // display images to screen
-    display_images(file_paths, rows, cols);
+    // display_images(file_paths, rows, cols);
+    std::vector<cv::Mat> image_vector = get_images_from_path_vector(file_paths);
 
 	return 0;
 }
