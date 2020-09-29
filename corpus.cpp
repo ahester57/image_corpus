@@ -9,7 +9,6 @@
 #include "./include/img_transform.hpp"
 
 
-
 int
 main(int argc, const char** argv)
 {
@@ -40,7 +39,10 @@ main(int argc, const char** argv)
     std::vector<cv::Mat> image_vector = get_images_from_path_vector(file_paths);
 
     for (cv::Mat img : image_vector) {
-        cv::Mat new_img = scale_image(img, rows, cols, preserve_aspect);
+        cv::Mat new_img = scale_image(img, rows, cols, preserve_aspect, cv::INTER_LANCZOS4);
+        if (grayscale) {
+            new_img = apply_grayscale(new_img);
+        }
         cv::imshow("hi", new_img);
         cv::waitKey(0);
     }
