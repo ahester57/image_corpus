@@ -9,6 +9,7 @@
 std::vector<std::string>
 open_dir(const char* dir_string)
 {
+    std::cout << "Selected input directory:\t" << dir_string << std::endl;
     std::vector<std::string> file_paths;
     open_dir(dir_string, " \n", &file_paths);
     return file_paths;

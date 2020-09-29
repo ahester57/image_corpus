@@ -12,10 +12,14 @@ display_images(std::vector<std::string> file_paths, uint rows, uint cols)
 {
     if (file_paths.size() == 0) return;
     std::vector<std::string>::iterator it = file_paths.begin();
-    while (true) {
+
+    while (true) { // loop until exit condition
+
         std::cout << std::endl << "File info:" << std::endl;
         std::cout << ' ' << *it << std::endl;
+
         try {
+            // attempt to read the image
             cv::Mat src = cv::imread(*it);
             if (src.empty()) {
                 std::cerr << "Cannot open input image: " + *it << std::endl;
@@ -24,37 +28,44 @@ display_images(std::vector<std::string> file_paths, uint rows, uint cols)
             }
             std::cout << "Image size is:\t\t\t" << src.cols << "x" << src.rows << std::endl;
 
-            // resize the image.
+            // calculate scaling
             uint d_rows = src.rows, d_cols = src.cols;
             float col_scale = (float) cols / src.cols;
             float row_scale = (float) rows / src.rows;
 
+            // decide which way to scale
             if (src.cols * row_scale > cols) {
+                // set columns to maximum provided
                 d_cols = cols;
                 d_rows = (uint) (src.rows * col_scale);
                 std::cout << "Scaled up cols:\t" << col_scale << std::endl;
             } else {
+                // set rows to maximum provided
                 d_rows = rows;
                 d_cols = (uint) (src.cols * row_scale);
                 std::cout << "Scaled up rows:\t" << row_scale << std::endl;
             }
 
+            // Resize and show the image
             std::cout << "Displayed image size is:\t" << d_cols << "x" << d_rows << std::endl;
             cv::namedWindow(*it, cv::WINDOW_NORMAL);
             cv::resizeWindow(*it, d_cols, d_rows);
             cv::imshow(*it, src);
 
+            // Wait for input
             while (char key_pressed = cv::waitKey(0) & 255) {
-                // pressing escape quits out
+                // 'q' or  <escape> quits out
                 if (key_pressed == 27 || key_pressed == 'q') {
                     cv::destroyAllWindows();
                     return;
                 }
+                // 'n' or <space> -> next image
                 if (key_pressed == 'n' || key_pressed == ' ') {
                     cv::destroyWindow(*it);
                     if (++it == file_paths.end()) --it;
                     break;
                 }
+                // 'p' -> previous image
                 if (key_pressed == 'p') {
                     cv::destroyWindow(*it);
                     if (it != file_paths.begin()) --it;

@@ -11,17 +11,30 @@
 int
 main(int argc, const char** argv)
 {
+    // CLA variables
     uint rows;
     uint cols;
+    bool preserve_aspect;
+    bool grayscale;
     std::string input_dir_path;
+    std::string output_dir_path;
+    std::string file_type;
 
-    int parse_result = parse_arguments(argc, argv, &input_dir_path, &rows, &cols);
+    // parse and save command line args
+    int parse_result = parse_arguments(
+        argc, argv,
+        &input_dir_path, &output_dir_path,
+        &rows, &cols,
+        &preserve_aspect, &grayscale,
+        &file_type
+    );
     if (parse_result != 1) return parse_result;
 
-	std::cout << "Selected input directory:\t" << input_dir_path << std::endl;
-
+    // open input directory and return list of relative file paths
     std::vector<std::string> file_paths = open_dir(input_dir_path.c_str());
 
+    // display images to screen
     display_images(file_paths, rows, cols);
+
 	return 0;
 }
