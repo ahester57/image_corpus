@@ -6,6 +6,8 @@
 #include "./include/cla_parse.hpp"
 #include "./include/dir_func.hpp"
 #include "./include/img_display.hpp"
+#include "./include/img_transform.hpp"
+
 
 
 int
@@ -37,5 +39,10 @@ main(int argc, const char** argv)
     // display_images(file_paths, rows, cols);
     std::vector<cv::Mat> image_vector = get_images_from_path_vector(file_paths);
 
+    for (cv::Mat img : image_vector) {
+        cv::Mat new_img = scale_image(img, rows, cols, preserve_aspect);
+        cv::imshow("hi", new_img);
+        cv::waitKey(0);
+    }
 	return 0;
 }
