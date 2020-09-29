@@ -4,6 +4,7 @@
 // g++.exe (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0
 
 #include "./include/img_display.hpp"
+#include "./include/img_struct.hpp"
 
 
 // display the images
@@ -72,46 +73,12 @@ display_images(std::vector<std::string> file_paths, uint rows, uint cols)
                     break;
                 }
             }
-        } catch (std::string& str) {
+        } catch (std::string &str) {
             std::cerr << "Error: " << *it << ": " << str << std::endl;
             return;
-        } catch (cv::Exception& e) {
+        } catch (cv::Exception &e) {
             std::cerr << "Error: " << *it << ": " << e.msg << std::endl;
             return;
         }
     }
-}
-
-std::vector<cv::Mat>
-get_images_from_path_vector(std::vector<std::string> file_paths)
-{
-    std::vector<cv::Mat> images;
-    if (file_paths.size() == 0) return images;
-    std::vector<std::string>::iterator it = file_paths.begin();
-
-    while (it != file_paths.end()) { // loop until exit condition
-
-        std::cout << std::endl << "File info:" << std::endl;
-        std::cout << ' ' << *it << std::endl;
-
-        try {
-            // attempt to read the image
-            cv::Mat src = cv::imread(*it);
-            if (src.empty()) {
-                std::cerr << "Cannot open input image: " + *it << std::endl;
-                it = file_paths.erase(it);
-                continue;
-            }
-            std::cout << "Image size is:\t\t\t" << src.cols << "x" << src.rows << std::endl;
-            images.push_back(src);
-            it++;
-        } catch (std::string& str) {
-            std::cerr << "Error: " << *it << ": " << str << std::endl;
-            return images;
-        } catch (cv::Exception& e) {
-            std::cerr << "Error: " << *it << ": " << e.msg << std::endl;
-            return images;
-        }
-    }
-    return images;
 }

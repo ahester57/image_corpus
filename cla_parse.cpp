@@ -26,7 +26,7 @@ parse_arguments(
         "{help h      |      | show help message}"           // optional, show help optional
         "{aspect a    |      | preserve aspect ratio}"
         "{grayscale g |      | output grayscale}"
-        "{type t      |      | output filetype jpg, tif, bmp, or png}";
+        "{type t      |jpg   | output filetype jpg, tif, bmp, or png}";
 
     cv::CommandLineParser parser(argc, argv, keys);
 

@@ -36,3 +36,5 @@ Usage: corpus.exe [params] indir outdir
         outdir (value:./out)
                 output directory
 ```
+
+https://github.com/ahester57/image_corpus
