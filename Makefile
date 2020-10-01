@@ -26,3 +26,5 @@ clean:
 
 destroy:
 	$(RM) $(OBJECTS) corpus ${wildcard ${IDIR}/*.gch}
+
+# https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/

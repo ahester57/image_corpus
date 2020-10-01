@@ -10,7 +10,7 @@ scale_image(cv::Mat src, uint rows, uint cols, bool preserve_aspect, cv::Interpo
 {
     cv::Size new_size = cv::Size(cols, rows);
     if (preserve_aspect) {
-        new_size = calculate_scale(src, rows, cols);
+        new_size = get_size_aspect(src, rows, cols);
     }
     std::cout << "New image size is:\t" << new_size.width << "x" << new_size.height << std::endl;
             
@@ -22,7 +22,7 @@ scale_image(cv::Mat src, uint rows, uint cols, bool preserve_aspect, cv::Interpo
 
 // calculate scaling
 cv::Size
-calculate_scale(cv::Mat src, uint rows, uint cols)
+get_size_aspect(cv::Mat src, uint rows, uint cols)
 {
     uint d_rows = src.rows, d_cols = src.cols;
     float col_scale = (float) cols / src.cols;
