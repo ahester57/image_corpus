@@ -5,6 +5,8 @@
 #ifndef _H_DIR_FUNC
 #define _H_DIR_FUNC
 
+#include <vector>
+#include <iostream>
 #include "img_struct.hpp"
 
 

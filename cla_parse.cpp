@@ -2,6 +2,9 @@
 // Austin Hester CS542o sept 2020
 // g++.exe (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0
 
+#include <opencv2/core/core.hpp>
+#include <iostream>
+
 #include "./include/cla_parse.hpp"
 
 

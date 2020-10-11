@@ -2,13 +2,14 @@
 // Austin Hester CS542o sept 2020
 // g++.exe (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0
 
-#include "./include/corpus.hpp"
+#include <vector>
+#include <iostream>
+
 #include "./include/cla_parse.hpp"
 #include "./include/dir_func.hpp"
 // #include "./include/img_display.hpp"
 #include "./include/img_transform.hpp"
 #include "./include/img_struct.hpp"
-
 
 
 int

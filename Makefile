@@ -24,7 +24,7 @@ corpus: $(OBJECTS)
 	$(CC) -o $@ $^ $(CFLAGS)
 
 clean:
-	$(RM) $(OBJECTS)
+	$(RM) $(OBJECTS) ${wildcard ${IDIR}/*.gch}
 
 destroy:
 	$(RM) $(OBJECTS) corpus ${wildcard ${IDIR}/*.gch}

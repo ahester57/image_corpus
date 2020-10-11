@@ -2,7 +2,7 @@
 // Austin Hester CS542o sept 2020
 // g++.exe (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0
 
-#include "./include/dir_func.hpp"
+
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -13,6 +13,8 @@
 #include <iostream>
 #include <dirent.h>
 
+#include "./include/dir_func.hpp"
+#include "./include/string_helper.hpp"
 
 // Wrapper for open_dir, returns vector of strings (filenames)
 std::vector<std::string>
@@ -75,20 +77,6 @@ is_directory(const char* path)
         }
     }
     return false;
-}
-
-std::vector<std::string>
-split (std::string s, char delim)
-{
-    // cred: https://stackoverflow.com/a/46931770
-    std::vector<std::string> result;
-    std::stringstream ss (s);
-    std::string item;
-
-    while (std::getline (ss, item, delim)) {
-        result.push_back (item);
-    }
-    return result;
 }
 
 std::vector<img_struct_t>
