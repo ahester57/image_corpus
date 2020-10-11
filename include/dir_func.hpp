@@ -5,15 +5,6 @@
 #ifndef _H_DIR_FUNC
 #define _H_DIR_FUNC
 
-#include <opencv2/core/core.hpp>
-#include <opencv2/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>
-
-#include <sys/stat.h>
-#include <vector>
-#include <iostream>
-#include <dirent.h>
-
 #include "img_struct.hpp"
 
 

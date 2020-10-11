@@ -3,6 +3,15 @@
 // g++.exe (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0
 
 #include "./include/dir_func.hpp"
+#include <opencv2/core/core.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/core/utils/filesystem.hpp>
+
+#include <sys/stat.h>
+#include <vector>
+#include <iostream>
+#include <dirent.h>
 
 
 // Wrapper for open_dir, returns vector of strings (filenames)
@@ -121,6 +130,25 @@ get_images_from_path_vector(std::vector<std::string> file_paths)
 }
 
 int
+create_dir_recursive(std::string dst_file)
+{
+    std::vector<std::string> split_dst_file = split(dst_file, '/');
+    std::string output_so_far = "";
+    for (std::string first_dir : split_dst_file) {
+        if (output_so_far.length() > 0) {
+            output_so_far = output_so_far + '/' + first_dir;
+        } else output_so_far = first_dir;
+        if (output_so_far == dst_file) return 1;
+        if (!cv::utils::fs::createDirectory(output_so_far)) {
+            std::cerr << "Could not create directory: " << output_so_far << std::endl;
+            return -1;
+        }
+    }
+    std::cerr << "this should never happen but compiler wants a return here.\n";
+    return 1;
+}
+
+int
 write_to_dir(std::vector<img_struct_t> image_vector, std::string output_dir, std::string file_type)
 {
     // std::vector<int> compression_params;
@@ -128,10 +156,14 @@ write_to_dir(std::vector<img_struct_t> image_vector, std::string output_dir, std
     // compression_params.push_back(100);
     for (img_struct_t image_struct : image_vector) {
         try {
-            std::string dst_file = output_dir + "/" + image_struct.file_name;
+            std::string dst_file = output_dir + "/" + image_struct.metadata;
+                std::cout << "asseaters\n";
+            if (!create_dir_recursive(dst_file)) {
+                return -1;
+            }
             std::cout << "Writing " << dst_file << std::endl;
             if (!cv::imwrite(dst_file, image_struct.image)) {
-                throw std::runtime_error("Could not write file " + dst_file);
+                std::cerr << "Could not write file " << dst_file << std::endl;
             }
             cv::waitKey(100);
             std::cout << "Wrote " << dst_file << std::endl;

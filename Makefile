@@ -1,7 +1,9 @@
 IDIR=./include
 IOPENCV=C:/dev/OpenCV-MinGW-Build-OpenCV-4.1.1-x64/include
 LOPENCV=C:/dev/OpenCV-MinGW-Build-OpenCV-4.1.1-x64/x64/mingw/bin
-LDLIBS= -llibopencv_core411 -llibopencv_highgui411 -llibopencv_imgcodecs411 -llibopencv_imgproc411
+# IEXIV2=C:/dev/exiv2-0.27.3-MinGW64/include
+# LEXIV2=C:/dev/exiv2-0.27.3-MinGW64/bin
+LDLIBS= -llibopencv_core411 -llibopencv_highgui411 -llibopencv_imgcodecs411 -llibopencv_imgproc411 #-lexiv2
 
 CC=g++
 CFLAGS=-Wall -g -I ${IDIR} -I ${IOPENCV} -L ${LOPENCV} ${LDLIBS}
@@ -19,7 +21,7 @@ all: corpus
 	${CC} -c $^ -I ${IDIR} -I ${IOPENCV}
 
 corpus: $(OBJECTS)
-	$(CC) -o $@ $^ $(CFLAGS) 
+	$(CC) -o $@ $^ $(CFLAGS)
 
 clean:
 	$(RM) $(OBJECTS)
