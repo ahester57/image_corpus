@@ -145,7 +145,6 @@ write_to_dir(std::vector<img_struct_t> image_vector, std::string output_dir, std
     for (img_struct_t image_struct : image_vector) {
         try {
             std::string dst_file = output_dir + "/" + image_struct.metadata;
-                std::cout << "asseaters\n";
             if (!create_dir_recursive(dst_file)) {
                 return -1;
             }

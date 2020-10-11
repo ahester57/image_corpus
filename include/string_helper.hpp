@@ -1,5 +1,5 @@
 // string_helper.hpp : String functions
-// Austin Hester CS542o sept 2020
+// Austin Hester CS542o oct 2020
 // g++.exe (x86_64-posix-seh-rev0, Built by MinGW-W64 project) 8.1.0
 
 #ifndef _H_STRING_HELPER
